@@ -1,0 +1,12 @@
+{
+  "name": "hoanganh-autofarm-resource",
+  "version": "3.13.0",
+  "private": true,
+  "scripts": {
+    "test": "node tests/resource.test.cjs && node tests/controller.test.cjs && node tests/background.test.cjs && node tests/inventory.test.cjs && node tests/site.test.cjs && node tests/goals.test.cjs && node tests/events.test.cjs && node tests/build-accuracy.test.cjs && node tests/skills.test.cjs && node tests/meta-bond.test.cjs && node tests/tm-policy.test.cjs && node tests/choice-pause.test.cjs && node tests/navigation.test.cjs && node tests/custom-wake.test.cjs && node tests/improvements.test.cjs && node tests/solar.test.cjs && node tests/shadow.test.cjs && node tests/zmove.test.cjs && node tests/bond-terrain.test.cjs && node tests/modes.test.cjs && node tests/boss-revive.test.cjs && node tests/survival-progression.test.cjs && node tests/combat3130.test.cjs",
+    "test:browser": "node tests/browser.test.cjs && node tests/session.browser.test.cjs && node tests/session-error.browser.test.cjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.64.1"
+  }
+}

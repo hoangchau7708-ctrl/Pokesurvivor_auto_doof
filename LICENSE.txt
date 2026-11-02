@@ -1,0 +1,6 @@
+Copyright (c) 2026 hoanganh — hoanganh Survivor Studio.
+All rights reserved for the newly authored source code and original UI of this distribution, to the extent permitted by applicable law.
+
+This notice is a project attribution, not legal proof of trademark registration, third-party intellectual-property clearance, or assignment of external works. The project does not claim any right over the PokéSurvivor game, Pokémon names/characters, external services, or their owners' trademarks.
+
+Do not redistribute or resell this distribution without authorization of the project's rights holder. If distributing commercially, consult qualified legal counsel about provenance, intellectual property, consumer protection, and applicable local laws.

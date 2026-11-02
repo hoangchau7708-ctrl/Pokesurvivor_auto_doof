@@ -1,0 +1,71 @@
+{
+  "manifest_version": 3,
+  "name": "hoanganh Auto Farm · Resource Pilot",
+  "short_name": "hoanganh AutoFarm",
+  "version": "3.13.0",
+  "description": "Auto farm và tự chọn build trên PokéSurvivor và Doofcraft. Cần giữ tab game hoạt động.",
+  "permissions": [
+    "storage",
+    "notifications",
+    "power",
+    "alarms"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "hoanganh Auto Farm & Build",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://pokesurvivor.com/*",
+        "https://www.pokesurvivor.com/*",
+        "https://pokesurvivor.doofcraft.com/*"
+      ],
+      "js": [
+        "site-profile.js",
+        "event-data.js",
+        "event-core.js",
+        "vision-data.js",
+        "doofcraft-data.js",
+        "terrain-sensor.js",
+        "autofarm-sensor.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://pokesurvivor.com/*",
+        "https://www.pokesurvivor.com/*",
+        "https://pokesurvivor.doofcraft.com/*"
+      ],
+      "js": [
+        "site-profile.js",
+        "event-data.js",
+        "event-core.js",
+        "build-data.js",
+        "autofarm-core.js",
+        "goals-core.js",
+        "inventory-core.js",
+        "build-core.js",
+        "planner.js",
+        "dom.js",
+        "game-workflow.js",
+        "autofarm.js"
+      ],
+      "css": [
+        "autofarm.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

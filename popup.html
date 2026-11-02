@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hoanganh Auto Farm + Build</title><link rel="stylesheet" href="style.css"></head>
+<body><header><span class="logo">H</span><div><strong>hoanganh <span>autofarm</span></strong><small>RESOURCE PILOT · 3.13.0 BETA</small></div><span class="badge">LOCAL</span></header>
+<main>
+<section class="intro"><h1>Farm theo mục tiêu.</h1><p>Chọn chiến thuật ở đây. Mục tiêu vàng/vé, tiến độ phiên và nút bắt đầu nằm trong bảng Farm ở trang game.</p></section>
+<form id="farmForm"><section class="panel"><label>Hồ sơ farm<select id="farmGoal"><option value="coins">Farm · ưu tiên tài nguyên</option><option value="survival">Sinh tồn</option></select></label><p class="hint">Trong game: F8 bật/tạm dừng · F9 đường đi · F6 nhận diện. Các ngưỡng vào cổng, mở rương và nhật ký nằm trong menu nổi.</p></section>
+<section class="panel"><div class="section-title"><span class="index">01</span><h2>Build mục tiêu</h2></div>
+<label for="pokemon">Pokémon</label><input id="pokemon" list="pokemonList" placeholder="Tự nhận diện · hoặc nhập tên / số Dex" autocomplete="off"><datalist id="pokemonList"></datalist>
+<div class="grid"><label>Khi chọn nội tại<select id="autoPriority"><option value="balanced">Cân bằng</option><option value="resources">Tài nguyên</option><option value="survival">Sinh tồn</option><option value="attack">Sát thương</option></select></label></div>
+<div id="buildPreview" class="build-preview" aria-live="polite"></div>
+<p class="hint">Tự chọn và lưu 4 chiêu trong tab Build của tool ở trang game.</p>
+</section>
+<section class="panel"><div class="section-title"><span class="index">02</span><h2>Auto farm</h2></div>
+<label>Di chuyển<select id="autoPattern"><option value="adaptive">Thích ứng canvas · thử nghiệm</option><option value="orbit">Vòng tròn</option><option value="zigzag">Zigzag</option><option value="sweep">Quét khu vực</option></select></label>
+<div class="grid"><label>Tối đa phút · 0 = vô hạn<input id="autoMinutes" type="number" min="0" max="1440" step="1" required></label><label>Tối đa lượt · 0 = vô hạn<input id="autoRuns" type="number" min="0" max="10000" step="1" required></label></div>
+<div class="toggles"><label><input id="autoPick" type="checkbox"> Tự chọn nâng cấp</label><label><input id="autoSkills" type="checkbox"> Chọn chiêu theo tình huống</label><label><input id="autoReplay" type="checkbox"> Tự chơi lại</label></div>
+<details><summary>Nhịp thao tác</summary><div class="grid"><label>Đổi chiêu mỗi (ms)<input id="skillMs" type="number" min="1000" max="15000" step="100" required></label><label>Đổi hướng mẫu (ms)<input id="moveMs" type="number" min="400" max="3500" step="50" required></label></div></details>
+</section>
+<div class="save"><button id="autoSave" type="submit">Lưu cấu hình farm</button><p id="message" role="status" aria-live="polite">Đang tải cấu hình…</p></div>
+</form>
+<section class="status-panel"><div class="section-title"><span class="dot"></span><h2 id="farmStatus">Chưa có báo cáo</h2></div><p id="farmReason">Bật farm tại trang game để bắt đầu.</p><p id="lastDecision" class="hint"></p></section>
+<footer>Giữ tab game hoạt động. Alt + Shift + A: bật/dừng.<br>Chiến thuật tài nguyên thử nghiệm; chưa có đo xu/vé mỗi giờ.<br><span id="dataDate"></span></footer>
+</main><script src="build-data.js"></script><script src="autofarm-core.js"></script><script src="event-data.js"></script><script src="event-core.js"></script><script src="build-core.js"></script><script src="popup.js"></script></body></html>
+

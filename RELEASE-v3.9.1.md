@@ -1,0 +1,18 @@
+# HoangAnh Auto Farm v3.9.1
+
+## Chọn và giữ Bond
+- Sửa trường hợp Bond Hex + Hyper Beam bị Hail cấp cao lấn điểm: ưu tiên Bond có chiêu core và có thể đánh tới địch, rồi giữ Bond thay vì quay lại chiêu đơn.
+- Lưu cấp chiêu đã đọc theo tên chiêu, giữ thông tin khi chuyển ô/ghép Bond. Không tự đoán cấp cao khi chưa đọc được.
+- Bond tầm xa an toàn vẫn có thể được chọn trong lúc di chuyển hoặc né; giữ chặn khi chờ game, vào cổng, bị Choice Band khóa, ô không rõ hoặc chỉ gồm buff/chiêu không tới địch.
+- Bond chính đủ 4 core vẫn được ưu tiên cao nhất.
+
+## Địa hình và di chuyển
+- Đọc địa hình Doofcraft theo ô 8 pixel thay vì 16 pixel để nhận diện vách mỏng chính xác hơn; gộp các ô liền nhau để giảm số vật cản cần xử lý.
+- Nhớ tường tĩnh có biên dạng rõ tối đa 12 giây khi khuất, có giới hạn khoảng cách và số lượng; đặt lại khi đổi arena/dịch chuyển lớn.
+- Loại hướng đi xuyên vật cản rắn ngay cả khi áp lực quái cao. Khi đã chạm biên, vẫn cho phép hướng đi ra khỏi vật cản.
+- Đường vòng có thêm khoảng đệm và ưu tiên khoảng trống để hạn chế bám sát góc tường.
+
+## Kiểm tra và cập nhật
+Đã qua bộ hồi quy, renderer HUD Doofcraft với bố cục Hyper Beam / Hail / Bond Hex + Hyper Beam, giữ Bond sau xác nhận, vách 8 pixel, che khuất tường 3 giây và mô phỏng đường vòng quanh vật cản/góc chữ U. Kiểm tra bằng fixture Chrome; chưa đo hiệu quả farm trong trận thật hoặc bảo đảm không bao giờ kẹt.
+
+Máy tính: thay tệp trong thư mục tiện ích cũ, Reload tiện ích rồi tải lại game. Android: nhập userscript mới và tải lại game. Giữ cấu hình 4 core đã lưu của v3.9.0.

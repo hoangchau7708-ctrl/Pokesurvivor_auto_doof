@@ -1,0 +1,21 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),path=require('path');const ctx=vm.createContext({});vm.runInContext(fs.readFileSync(path.join(__dirname,'../inventory-core.js'),'utf8'),ctx);const I=vm.runInContext('HAI',ctx);
+const cards=(a,b)=>[{title:'Keep '+a},{title:'Switch to '+b}];
+assert.equal(I.chooseItem(cards('Focus Sash','Amulet Coin'),'coins',.9,{level:15}).index,1);
+assert.equal(I.chooseItem(cards('Amulet Coin','Leftovers'),'coins',.25).index,1);
+assert.equal(I.chooseItem(cards('Quick Claw','Amulet Coin'),'tickets',.9).index,0);
+assert.equal(I.chooseItem(cards('Unknown Item','Amulet Coin'),'coins',.9).index,0);
+assert.equal(I.chooseItem(cards('Leftovers','Life Orb'),'survival',.4).index,0);
+assert.equal(I.chooseItem(cards('Lucky Egg','Quick Claw'),'coins',.9,{level:25}).index,1);
+const cfg={autoOrbs:true,retreatHp:45},me={kind:'pokemon',dex:798,x:0,y:0,r:14},nav={me,phase:'combat'},bag=['slumber','luminous','focus','quick'].map((id,slot)=>({id,slot,count:1,ready:true})),foe=(x,kind='pokemon')=>({kind,dex:10,x,y:0,r:14}),frame=(extra={})=>({seq:1,orbs:bag,orbBuffs:{},hp:.9,objects:[me],...extra});
+assert.equal(I.chooseOrb(frame(),nav,cfg),null);
+assert.equal(I.chooseOrb(frame({hp:.3,objects:[me,foe(60)]}),nav,cfg).id,'slumber');
+assert.equal(I.chooseOrb(frame({objects:[me,foe(250,'boss')]}),nav,cfg).id,'focus');
+assert.equal(I.chooseOrb(frame({objects:[me,foe(250,'boss')],orbBuffs:{focus:10}}),nav,cfg),null);
+assert.equal(I.chooseOrb(frame(),{...nav,phase:'rift',target:{x:500,y:0}},cfg).id,'quick');
+assert.equal(I.chooseOrb(frame(),{...nav,phase:'rift-enter'},cfg),null);
+assert.equal(I.chooseOrb(frame({orbs:[{id:'focus',slot:5,count:1}]}),nav,cfg),null);
+assert.equal(I.chooseOrb(frame({hp:.3,objects:[me,foe(60)]}),nav,{...cfg,autoOrbs:false}),null);
+const mgr=I.createOrbManager();const fight=frame({orbs:[{id:'focus',slot:2,count:2}],objects:[me,foe(250,'boss')]});assert.equal(mgr.tick(fight,nav,cfg,2000).key,'7');assert.equal(mgr.tick(fight,nav,cfg,2200),null);assert.equal(mgr.tick({...fight,seq:2,orbs:[{id:'focus',slot:2,count:1}]},nav,cfg,3400),null);assert.equal(mgr.tick(fight,nav,cfg,5000),null);
+console.log('PASS inventory: item tradeoffs, conservative unknowns, emergency control, boss buff, traversal, cooldown, observed consumption, correct slot keys');
+
+const dangerFrame=frame({objects:[me,foe(250,'boss')]});assert.equal(I.chooseOrb(dangerFrame,{...nav,phase:'evade',danger:{imminent:true,hazards:true}},cfg).id,'quick');assert.equal(I.chooseOrb({...dangerFrame,orbs:[{id:'focus',slot:2,count:1}]},{...nav,phase:'evade',danger:{imminent:true}},cfg),null);console.log('PASS orb defence: dodge speed before damage buff');
